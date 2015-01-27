@@ -1,0 +1,15 @@
+{
+  "author": "Oleksandr <alex.coockoo@gmail.com>",
+  "name": "ukma_courses",
+  "description": "UKMA courses rating",
+  "version": "0.1.0",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
