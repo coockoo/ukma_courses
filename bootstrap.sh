@@ -12,6 +12,11 @@ if ! [ -L /var/www ]; then
   ln -fs /vagrant /var/www
 fi
 
+# install nodejs
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install -y nodejs
+
 #install npm
 sudo apt-get update
 sudo apt-get install -y npm
