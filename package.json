@@ -6,7 +6,9 @@
   "repository": {
     "url": ""
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.11.1"
+  },
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
