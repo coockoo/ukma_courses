@@ -3,11 +3,11 @@ var AuthenticationForm = React.createClass({
 		return (
 			<form>
 				<div className="form-group">
-					<label for="email">Email</label>
+					<label htmlFor="email">Email</label>
 					<input type="text" id="email" name="email" className="form-control"/>
 				</div>
 				<div className="form-group">
-					<label for="password">Password</label>
+					<label htmlFor="password">Password</label>
 					<input type="password" id="password" name="password" className="form-control"/>
 				</div>
 			</form>
@@ -15,4 +15,4 @@ var AuthenticationForm = React.createClass({
 	}
 });
 
-React.render(<AuthenticationForm />, document.getElementById('container'));
+//React.render(<AuthenticationForm />, document.getElementById('container'));
