@@ -2,9 +2,12 @@ var Router = function () {
 
 	var hashTable = {};
 
+	var otherwiseHash = null;
+
 	var router = {
 		on: bindRoute,
-		start: start
+		start: start,
+		otherwise: otherwise
 	};
 
 	function bindRoute (name, handler) {
@@ -19,6 +22,11 @@ var Router = function () {
 		return router;
 	}
 
+	function otherwise (hash) {
+		otherwiseHash = hash;
+		return router;
+	}
+
 	function hashChangeListener (e) {
 		var newHash = window.location.hash;
 		console.log('started route change to', newHash);
@@ -28,8 +36,11 @@ var Router = function () {
 
 	function handleHash (hash) {
 		var handler = hashTable[hash];
+		var otherwiseHandler = hashTable[otherwiseHash];
 		if (handler) {
 			handler();
+		} else if (otherwiseHash) {
+			window.location.hash = otherwiseHash;
 		}
 	}
 
@@ -39,12 +50,15 @@ var Router = function () {
 
 var router = Router();
 
-router.on('#/', function () {
-	console.log('im in root');
-});
-router.on('#/authenticate', function () {
-	//TODO: render here page. But in page render components
-	React.render(<AuthenticationForm />, document.getElementById('container'));
-	console.log('in auth');
-});
+router
+	.on('#/', function () {
+		React.render(<div><h1>Welcome! This is root page!</h1></div>, document.getElementById('container'));
+		console.log('im in root');
+	})
+	.on('#/authenticate', function () {
+		//TODO: render here page. But in page render components
+		React.render(<AuthenticationViewPage />, document.getElementById('container'));
+		console.log('in auth');
+	})
+	.otherwise('#/');
 router.start();
