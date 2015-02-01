@@ -36,7 +36,7 @@ var Router = function () {
 
 	function handleHash (hash) {
 		var handler = hashTable[hash];
-		var otherwiseHandler = hashTable[otherwiseHash];
+		//var otherwiseHandler = hashTable[otherwiseHash];
 		if (handler) {
 			handler();
 		} else if (otherwiseHash) {
