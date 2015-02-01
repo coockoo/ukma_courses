@@ -14,7 +14,10 @@
     "jsonwebtoken": "^3.2.2",
     "lodash": "^3.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-react": "^2.0.0"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"

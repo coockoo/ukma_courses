@@ -1,0 +1,30 @@
+{
+  "name": "ukma_courses",
+  "version": "0.1.0",
+  "homepage": "https://github.com/coockoo/ukma_courses",
+  "authors": [
+    "Oleksandr Bondarchuk <alex.coockoo@gmail.com>"
+  ],
+  "description": "Service to view/compare/rate courcese",
+  "main": "front/app.js",
+  "keywords": [
+    "ukma",
+    "courses",
+    "rating"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.12.2"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}
