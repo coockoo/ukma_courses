@@ -1,3 +1,5 @@
+var AuthenticationForm = require('../../components/authentication/form');
+
 var AuthenticationViewPage = React.createClass({
 	render: function () {
 		return (
@@ -11,3 +13,5 @@ var AuthenticationViewPage = React.createClass({
 		);
 	}
 });
+
+module.exports = AuthenticationViewPage;

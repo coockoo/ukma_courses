@@ -13,5 +13,5 @@ npm-debug.log
 #bower dependencies
 front/bower/
 
-#build directory
-front/build/
+#build file
+front/build.js

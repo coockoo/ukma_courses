@@ -1,3 +1,5 @@
+var React = require('react');
+
 var AuthenticationForm = React.createClass({
 	_onSubmit: function (e) {
 		console.log('state', this.state);
