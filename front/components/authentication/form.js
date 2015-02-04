@@ -1,9 +1,10 @@
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var AuthenticationForm = React.createClass({
 	_onSubmit: function (e) {
 		console.log('state', this.state);
-		AuthenticationResource.authenticate(this.state);
 		e.preventDefault();
 	},
 	_onChange: function (e) {
@@ -30,9 +31,11 @@ var AuthenticationForm = React.createClass({
 				</div>
 				<div className="form-group text-right">
 					<input type="submit" value="Sign in" className='btn btn-primary'/>
-					<span> or <a href="#/registration">create account</a></span>
+					<span> or <Link to="registration">create account</Link></span>
 				</div>
 			</form>
 		);
 	}
 });
+
+module.exports = AuthenticationForm;

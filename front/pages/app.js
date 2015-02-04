@@ -9,7 +9,7 @@ var AppViewPage = React.createClass({
 		return (
 			<div>
 				<Link to="app">Root</Link>
-				<Link to="authenticate">Auth</Link>
+				<Link to="authentication">Auth</Link>
 
 				<RouteHandler />
 			</div>
