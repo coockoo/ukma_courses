@@ -1,4 +1,6 @@
-var AuthenticationForm = require('../../components/authentication/form');
+var React = require('react');
+//var AuthenticationForm = require('../../components/authentication/form');
+//<AuthenticationForm />
 
 var AuthenticationViewPage = React.createClass({
 	render: function () {
@@ -6,7 +8,7 @@ var AuthenticationViewPage = React.createClass({
 			<div className="row">
 				<div className="col-xs-6 col-xs-offset-3">
 					<div className="well">
-						<AuthenticationForm />
+						Auth
 					</div>
 				</div>
 			</div>

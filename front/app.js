@@ -1,7 +1,7 @@
 var React = require('react');
-var UkmaCoursesApp = require('./pages/app');
+var routes = require('./routes');
+var Router = require('react-router');
 
-React.render(
-	<UkmaCoursesApp />,
-	document.getElementById('container')
-);
+Router.run(routes, function (Handler) {
+	React.render(<Handler />, document.getElementById('container'));
+});
