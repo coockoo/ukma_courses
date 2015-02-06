@@ -17,17 +17,19 @@
     "react-router": "^0.11.6"
   },
   "devDependencies": {
-    "gulp": "^3.8.10",
+    "gulp": "~3.8.10",
     "gulp-react": "^2.0.0",
     "browserify": "~8.1.3",
-    "reactify": "~1.0.0"
+    "reactify": "~1.0.0",
+    "vinyl-source-stream": "~1.0.0"
   },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
   },
   "scripts": {
-    "build": "browserify front/app.js -o front/build.js"
+    "build": "browserify front/app.js -o front/build.js --no-bundle-external --list",
+    "build-react": "browserify react -o front/react.js --list"
   },
   "browserify": {
     "transform": [
