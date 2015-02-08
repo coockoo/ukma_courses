@@ -4,8 +4,8 @@ var Link = Router.Link;
 
 var AuthenticationForm = React.createClass({
 	_onSubmit: function (e) {
-		console.log('state', this.state);
 		e.preventDefault();
+		this.props.onSubmit(this.state);
 	},
 	_onChange: function (e) {
 		var changed = {};

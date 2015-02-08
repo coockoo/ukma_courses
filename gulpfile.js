@@ -2,7 +2,7 @@ var gulp         = require('gulp');
 var browserify   = require('browserify');
 var source       = require('vinyl-source-stream');
 
-var dependencies = [ "lodash", "react", "react-router" ];
+var dependencies = [ "lodash", "react", "react-router", "jquery", "store" ];
 
 gulp.task('libs', function () {
 	return browserify()
