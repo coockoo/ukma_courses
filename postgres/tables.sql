@@ -1,0 +1,1 @@
+\i ./tables/courses.sql
