@@ -11,7 +11,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../front'));
 
-app.use('/api', jwtExpress({secret: config.token}));
+//app.use('/api', jwtExpress({secret: config.token}));
 app.use('/api', unauthorizedHandler);
 
 app.use('/api', router);
