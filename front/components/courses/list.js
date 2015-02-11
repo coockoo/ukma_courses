@@ -9,9 +9,9 @@ var CoursesList = React.createClass({
 			return <CourseListItem key={course.id} data={course} />;
 		});
 		return (
-			<ul>
+			<div className="list-group">
 				{courseItems}
-			</ul>
+			</div>
 		);
 	}
 });

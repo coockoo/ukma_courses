@@ -16,8 +16,10 @@ var CoursesListPage = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
-				<CoursesList courses={this.state.courses}/>
+			<div className="row">
+				<div className="col-md-8 col-md-offset-2">
+					<CoursesList courses={this.state.courses}/>
+				</div>
 			</div>
 		);
 	}

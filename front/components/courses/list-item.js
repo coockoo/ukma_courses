@@ -6,7 +6,7 @@ var CourseListItem = React.createClass({
 	render: function () {
 		var course = this.props.data;
 		return (
-			<li><Link to="course" params={{id: course.id}}>{course.id} {course.name}</Link></li>
+			<Link to="course" params={{id: course.id}} className="list-group-item">{course.id} {course.name}</Link>
 		);
 	}
 });
