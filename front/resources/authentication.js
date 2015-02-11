@@ -5,8 +5,7 @@ function authenticate (credentials) {
 	$.ajax({
 		method: 'POST',
 		url: '/authenticate',
-		data: JSON.stringify(credentials),
-		contentType: 'application/json; charset=UTF-8'
+		data: JSON.stringify(credentials)
 	}).done(function (data) {
 		console.log('authenticated', data);
 		setToken(data.token);
