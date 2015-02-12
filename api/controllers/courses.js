@@ -8,6 +8,14 @@ function query (req, res) {
 	});
 }
 
+function view (req, res) {
+	var id = req.params.id;
+	service.findById(id).then(function (course) {
+		res.json(course);
+	});
+}
+
 module.exports = {
-	query: query
+	query: query,
+	view: view
 };

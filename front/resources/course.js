@@ -7,6 +7,14 @@ function query () {
 	});
 }
 
+function view (id) {
+	return $.ajax({
+		url: ['/api/courses/', id].join(''),
+		method: 'GET'
+	});
+}
+
 module.exports = {
-	query: query
+	query: query,
+	view: view
 };
