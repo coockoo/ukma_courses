@@ -3,3 +3,12 @@ create-db:
 
 create-tables:
 	cd postgres && psql ukma_courses root < tables.sql
+
+drop-db:
+	cd postgres/utils && sudo -u postgres psql -q < drop.sql
+
+recreate-db: drop-db create-db
+
+import:
+	cd postgres && psql ukma_courses root < import.sql
+
