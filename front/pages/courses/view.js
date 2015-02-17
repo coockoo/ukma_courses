@@ -4,8 +4,6 @@ var Link = Router.Link;
 var State = Router.State;
 
 var Course = require('../../resources/course');
-//TODO: maybe replace with Course.queryComments
-var Comment = require('../../resources/comment');
 
 var CommentsList = require('../../components/comments/list');
 
@@ -23,7 +21,7 @@ var CourseViewPage = React.createClass({
 		Course.getById(id).then(function (course) {
 			context.setState({course: course});
 		});
-		Comment.queryByCourseId(id).then(function (comments) {
+		Course.queryComments({id: id}).then(function (comments) {
 			context.setState({comments: comments});
 
 		})

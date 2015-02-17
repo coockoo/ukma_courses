@@ -14,7 +14,15 @@ function getById (id) {
 	});
 }
 
+function queryComments (params) {
+	return $.ajax({
+		url: ['/api/courses/', params.id, '/comments'].join(''),
+		method: 'GET'
+	});
+}
+
 module.exports = {
 	query: query,
-	getById: getById
+	getById: getById,
+	queryComments: queryComments
 };
