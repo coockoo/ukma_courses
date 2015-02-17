@@ -9,6 +9,7 @@ var coursesController = require('./controllers/courses');
 
 router.get('/courses', coursesController.query);
 router.get('/courses/:id', coursesController.view);
+router.get('/courses/:id/comments', coursesController.queryComments);
 
 module.exports = router;
 

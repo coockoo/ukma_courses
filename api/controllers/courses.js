@@ -15,7 +15,17 @@ function view (req, res) {
 	});
 }
 
+function queryComments (req, res) {
+	var params = _.pick(req.query, ['limit', 'offset']);
+	params.id = req.params.id;
+	service.queryComments(params).then(function (comments) {
+		res.json(comments);
+	})
+
+}
+
 module.exports = {
 	query: query,
-	view: view
+	view: view,
+	queryComments: queryComments
 };

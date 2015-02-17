@@ -7,7 +7,7 @@ function query () {
 	});
 }
 
-function view (id) {
+function getById (id) {
 	return $.ajax({
 		url: ['/api/courses/', id].join(''),
 		method: 'GET'
@@ -16,5 +16,5 @@ function view (id) {
 
 module.exports = {
 	query: query,
-	view: view
+	getById: getById
 };

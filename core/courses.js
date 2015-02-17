@@ -2,12 +2,7 @@ var db = require('./db');
 
 function query (params) {
 	var builder = db('courses');
-	if (params.limit) {
-		builder.limit(params.limit);
-	}
-	if (params.offset) {
-		builder.offset(params.offset);
-	}
+	db.paginate(builder, params);
 	return builder;
 }
 
@@ -19,8 +14,15 @@ function findById (id) {
 	return db('courses').where('id', id).first();
 }
 
+function queryComments (params) {
+	var builder = db('comments').where('course_id', params.id);
+	db.paginate(builder, params);
+	return builder;
+}
+
 module.exports = {
 	query: query,
+	queryComments: queryComments,
 	findAll: findAll,
 	findById: findById
 };
