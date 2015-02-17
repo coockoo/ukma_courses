@@ -11,4 +11,14 @@ var db = knex({
 	}
 });
 
+db.paginate = function (builder, params) {
+	if (params.limit) {
+		builder.limit(params.limit);
+	}
+	if (params.offset) {
+		builder.offset(params.offset);
+	}
+	return builder;
+};
+
 module.exports = db;
