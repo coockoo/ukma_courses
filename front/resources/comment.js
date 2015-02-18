@@ -1,13 +1,13 @@
 var $ = require('jquery');
 
-//function queryByCourseId (courseId) {
-//	return $.ajax({
-//		url: ['/api/courses/', courseId, '/comments'].join(''),
-//		method: 'GET'
-//	});
-//}
+function create (data) {
+	return $.ajax({
+		method: 'POST',
+		url: '/api/comments',
+		data: JSON.stringify(data)
+	});
+}
 
 module.exports = {
-	//queryByCourseId: queryByCourseId
-
+	create: create
 };

@@ -15,7 +15,7 @@ function findById (id) {
 }
 
 function queryComments (params) {
-	var builder = db('comments').where('course_id', params.id);
+	var builder = db('comments').where('course_id', params.id).orderBy('created_at', 'desc');
 	db.paginate(builder, params);
 	return builder;
 }

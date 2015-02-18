@@ -5,6 +5,7 @@ var Router = require('react-router');
 
 var $ = require('jquery');
 $.ajaxSetup({
+	dataType: 'json',
 	contentType: 'application/json; charset=UTF-8'
 });
 

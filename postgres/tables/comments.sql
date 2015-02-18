@@ -5,5 +5,5 @@ create table comments (
 
 	title text,
 	content text,
-	created_at timestamp with time zone
+	created_at timestamp with time zone not null
 );
