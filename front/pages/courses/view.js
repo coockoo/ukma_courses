@@ -9,19 +9,26 @@ var Comment = require('../../resources/comment');
 var CommentsList = require('../../components/comments/list');
 var CommentForm = require('../../components/comments/form');
 
+var Pagination = require('../../components/pagination');
+
 var CourseViewPage = React.createClass({
 	mixins: [State],
 	getInitialState: function () {
 		return {
 			course: {},
-			comments: []
+			comments: [],
+
+			//pagination
+			limit: 10,
+			offset: 0,
+			totalCount: 0
 		};
 	},
 	_queryComments: function () {
 		var context = this;
 		var id = context.getParams().id;
-		Course.queryComments({id: id}).then(function (comments) {
-			context.setState({comments: comments});
+		Course.queryComments({id: id, limit: this.state.limit, offset: this.state.offset}).then(function (response) {
+			context.setState({comments: response.data, totalCount: response.totalCount});
 		});
 	},
 	componentDidMount: function () {
@@ -39,6 +46,12 @@ var CourseViewPage = React.createClass({
 			context._queryComments();
 		});
 	},
+	_onPageChange: function (limit, offset) {
+		this.setState({
+			limit: limit,
+			offset: offset
+		}, this._queryComments);
+	},
 	render: function () {
 		return (
 			<div className="col-xs-8 col-xs-offset-2">
@@ -47,7 +60,15 @@ var CourseViewPage = React.createClass({
 
 				<CommentForm onSubmit={this._addComment}/>
 
+				<div className="text-center">
+					<Pagination limit={this.state.limit} offset={this.state.offset} totalCount={this.state.totalCount} onPageChange={this._onPageChange} />
+				</div>
+
 				<CommentsList comments={this.state.comments} />
+
+				<div className="text-center">
+					<Pagination limit={this.state.limit} offset={this.state.offset} totalCount={this.state.totalCount} onPageChange={this._onPageChange} />
+				</div>
 
 				<Link to="courses">To courses</Link>
 			</div>

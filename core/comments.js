@@ -10,7 +10,14 @@ function create (comment) {
 	return db('comments').insert(comment, 'id').then(_.first);
 }
 
+function count (params) {
+	return db('comments').where(params).count().first().then(function (data) {
+		return data.count;
+	});
+}
+
 module.exports = {
 	findById: findById,
-	create: create
+	create: create,
+	count: count
 };

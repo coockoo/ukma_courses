@@ -1,5 +1,7 @@
 var service = require('../../core/courses');
+var commentsService = require('../../core/comments');
 var _ = require('lodash');
+var Promise = require('bluebird');
 
 function query (req, res) {
 	var params = _.pick(req.query, ['limit', 'offset']);
@@ -18,10 +20,15 @@ function view (req, res) {
 function queryComments (req, res) {
 	var params = _.pick(req.query, ['limit', 'offset']);
 	params.id = req.params.id;
-	service.queryComments(params).then(function (comments) {
-		res.json(comments);
-	})
-
+	Promise.all([
+		service.queryComments(params),
+		commentsService.count({course_id: params.id})
+	]).spread(function (comments, count) {
+		res.json({
+			data: comments,
+			totalCount: count
+		});
+	});
 }
 
 module.exports = {

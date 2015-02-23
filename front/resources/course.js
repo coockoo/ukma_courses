@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var _ = require('lodash');
 
 function query () {
 	return $.ajax({
@@ -15,8 +16,10 @@ function getById (id) {
 }
 
 function queryComments (params) {
+	var data = _.pick(params, ['limit', 'offset']);
 	return $.ajax({
 		url: ['/api/courses/', params.id, '/comments'].join(''),
+		data: data,
 		method: 'GET'
 	});
 }

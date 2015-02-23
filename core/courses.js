@@ -20,6 +20,7 @@ function queryComments (params) {
 	return builder;
 }
 
+
 module.exports = {
 	query: query,
 	queryComments: queryComments,
