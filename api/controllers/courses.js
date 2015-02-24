@@ -13,7 +13,6 @@ function query (req, res) {
 			data: courses,
 			totalCount: count
 		});
-
 	});
 }
 
