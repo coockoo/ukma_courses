@@ -1,11 +1,9 @@
 var React = require('react');
-var State = React.State;
 
 var Pagination = require('../../components/pagination');
 var Rating = require('../../resources/rating');
 
 var RatingsListPage = React.createClass({
-	mixins: [State],
 	getInitialState: function () {
 		return {
 			ratings: [],

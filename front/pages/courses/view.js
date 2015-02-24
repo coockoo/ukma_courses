@@ -1,7 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
-var State = Router.State;
 
 var Course = require('../../resources/course');
 var Comment = require('../../resources/comment');
@@ -12,7 +11,7 @@ var CommentForm = require('../../components/comments/form');
 var Pagination = require('../../components/pagination');
 
 var CourseViewPage = React.createClass({
-	mixins: [State],
+	mixins: [Router.State],
 	getInitialState: function () {
 		return {
 			course: {},
