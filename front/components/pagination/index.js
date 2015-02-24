@@ -42,9 +42,9 @@ var Pagination = React.createClass({
 		return (
 			<nav>
 				<ul className="pagination">
-					<li className={current == 0?'disabled':''}><a href="javascript:void(0);" onClick={this._onPrevClicked}><span>&laquo;</span></a></li>
+					<li className={count == 0 || current == 0?'disabled':''}><a href="javascript:void(0);" onClick={this._onPrevClicked}><span>&laquo;</span></a></li>
 					{pages}
-					<li className={current == count - 1?'disabled':''}><a href="javascript:void(0);" onClick={this._onNextClicked}><span>&raquo;</span></a></li>
+					<li className={count == 0 || current == count - 1?'disabled':''}><a href="javascript:void(0);" onClick={this._onNextClicked}><span>&raquo;</span></a></li>
 				</ul>
 			</nav>
 		);
