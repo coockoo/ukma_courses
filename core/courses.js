@@ -6,6 +6,13 @@ function query (params) {
 	return builder;
 }
 
+function count (params) {
+	var where = params || {};
+	return db('courses').where(where).count().first().then(function (data) {
+		return data.count;
+	});
+}
+
 function findAll () {
 	return db('courses');
 }
@@ -23,6 +30,7 @@ function queryComments (params) {
 
 module.exports = {
 	query: query,
+	count: count,
 	queryComments: queryComments,
 	findAll: findAll,
 	findById: findById

@@ -5,8 +5,15 @@ var Promise = require('bluebird');
 
 function query (req, res) {
 	var params = _.pick(req.query, ['limit', 'offset']);
-	service.query(params).then(function (courses) {
-		res.json(courses);
+	Promise.all([
+		service.query(params),
+		service.count()
+	]).spread(function (courses, count) {
+		res.json({
+			data: courses,
+			totalCount: count
+		});
+
 	});
 }
 
