@@ -11,6 +11,7 @@ var AppViewPage = React.createClass({
 				<Link to="app">Root</Link>
 				<Link to="authentication">Auth</Link>
 				<Link to="courses">All courses</Link>
+				<Link to="ratings">All ratings</Link>
 
 				<RouteHandler />
 			</div>
