@@ -10,6 +10,17 @@ function query (params) {
 	});
 }
 
+function create (params) {
+	var data = _.pick(params, ['name']);
+	return $.ajax({
+		url: '/api/ratings',
+		method: 'POST',
+		data: JSON.stringify(data)
+	});
+
+}
+
 module.exports = {
-	query: query
+	query: query,
+	create: create
 };

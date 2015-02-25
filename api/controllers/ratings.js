@@ -16,6 +16,18 @@ function query (req, res) {
 	});
 }
 
+function create (req, res) {
+	var params = _.pick(req.body, ['name']);
+	ratingsService.create(params).then(function (id) {
+		console.log('created', id);
+		return ratingsService.findById(id);
+	}).then(function gotRating (data) {
+		console.log('found by id', data);
+		res.json(data);
+	});
+}
+
 module.exports = {
-	query: query
+	query: query,
+	create: create
 };

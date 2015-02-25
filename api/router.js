@@ -19,6 +19,7 @@ router.post('/comments', commentsController.create);
 var ratingsController = require('./controllers/ratings');
 
 router.get('/ratings', ratingsController.query);
+router.post('/ratings', ratingsController.create);
 
 module.exports = router;
 

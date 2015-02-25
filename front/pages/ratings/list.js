@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Pagination = require('../../components/pagination');
 var Rating = require('../../resources/rating');
@@ -23,7 +25,7 @@ var RatingsListPage = React.createClass({
 		return (
 			<div>
 
-				<Link to=""></Link>
+				<Link to="new-rating">Create rating</Link>
 
 
 				<div className="text-center">
