@@ -15,6 +15,9 @@ var RatingsListPage = React.createClass({
 			offset: 0
 		};
 	},
+	componentDidMount: function () {
+		this._queryRatings();
+	},
 	_queryRatings: function () {
 		var context = this;
 		Rating.query({limit: this.state.limit, offset: this.state.offset}).then(function (response) {
