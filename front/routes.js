@@ -23,8 +23,8 @@ module.exports = (
 		<Route name="courses" handler={CoursesListPage} path="courses" />
 		<Route name="course" handler={CourseViewPage} path="courses/:id" />
 
-		<Route name="ratings" handler={RatingsListPage} path="/ratings" />
-		<Route name="new-rating" handler={RatingsNewPage} path="/ratings/new" />
+		<Route name="ratings" handler={RatingsListPage} path="ratings" />
+		<Route name="new-rating" handler={RatingsNewPage} path="ratings/new" />
 
 		<DefaultRoute handler={DashboardViewPage} />
 	</Route>
