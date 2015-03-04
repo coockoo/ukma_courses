@@ -27,11 +27,22 @@ function queryComments (params) {
 	return builder;
 }
 
+function listRatings (params) {
+	var builder = db('ratings');
+	builder.select('ratings.name', 'ratings.id', 'courses_ratings.course_id', 'courses_ratings.value');
+	builder.leftJoin('courses_ratings', function () {
+		this.on('courses_ratings.rating_id', '=', 'ratings.id');
+	});
+	builder.where('courses_ratings.course_id', params.id).orWhereNull('courses_ratings.course_id');
+	return builder;
+}
+
 
 module.exports = {
 	query: query,
 	count: count,
 	queryComments: queryComments,
 	findAll: findAll,
-	findById: findById
+	findById: findById,
+	listRatings: listRatings
 };

@@ -26,8 +26,26 @@ function queryComments (params) {
 	});
 }
 
+function listRatings (params) {
+	return $.ajax({
+		url: ['/api/courses/', params.id, '/ratings'].join(''),
+		method: 'GET'
+	});
+}
+
+function updateRating (id, params) {
+	var data =_.pick(params, ['id', 'value']);
+	return $.ajax({
+		url: ['/api/courses/', id, '/ratings'].join(''),
+		data: JSON.stringify(data),
+		method: 'PUT'
+	});
+}
+
 module.exports = {
 	query: query,
 	getById: getById,
-	queryComments: queryComments
+	queryComments: queryComments,
+	listRatings: listRatings,
+	updateRating: updateRating
 };

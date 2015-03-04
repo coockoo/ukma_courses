@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
@@ -9,6 +10,8 @@ var CommentsList = require('../../components/comments/list');
 var CommentForm = require('../../components/comments/form');
 
 var Pagination = require('../../components/pagination');
+var CourseRatingsList = require('../../components/course-ratings/list');
+
 
 var CourseViewPage = React.createClass({
 	mixins: [Router.State],
@@ -16,6 +19,7 @@ var CourseViewPage = React.createClass({
 		return {
 			course: {},
 			comments: [],
+			ratings: [],
 
 			//pagination
 			limit: 10,
@@ -30,6 +34,13 @@ var CourseViewPage = React.createClass({
 			context.setState({comments: response.data, totalCount: response.totalCount});
 		});
 	},
+	_queryRatings: function () {
+		var context = this;
+		var id = context.getParams().id;
+		Course.listRatings({id: id}).then(function (response) {
+			context.setState({ratings: response.data})
+		})
+	},
 	componentDidMount: function () {
 		var context = this;
 		var id = this.getParams().id;
@@ -37,6 +48,7 @@ var CourseViewPage = React.createClass({
 			context.setState({course: course});
 		});
 		context._queryComments();
+		context._queryRatings();
 	},
 	_addComment: function (comment) {
 		var context = this;
@@ -51,13 +63,38 @@ var CourseViewPage = React.createClass({
 			offset: offset
 		}, this._queryComments);
 	},
+	_onRatingChange: function (rating) {
+		var context = this;
+		console.log('view change', rating);
+		var ratingToChange = _.find(this.state.ratings, function findRating (r) {
+			return r.id == rating.id;
+		});
+		ratingToChange.value = rating.value;
+		this.setState({ratings: this.state.ratings}, function onStateUpdated () {
+			Course.updateRating(context.state.course.id, ratingToChange);//.then(function onRatingUpdated () {
+			//todo: maybe replace this with returning rating value on update and updating only one rating
+			//context._queryRatings();
+		//});
+		});
+	},
 	render: function () {
 		return (
 			<div className="col-xs-8 col-xs-offset-2">
 				<h3>{this.state.course.name}</h3>
 				<p>{this.state.course.description}</p>
 
-				<CommentForm onSubmit={this._addComment}/>
+				<div className="row">
+					<div className="col-xs-4">
+						<CourseRatingsList ratings={this.state.ratings} onChange={this._onRatingChange} />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-xs-12">
+						<h3>New Comment</h3>
+						<CommentForm onSubmit={this._addComment}/>
+					</div>
+				</div>
 
 				<div className="text-center">
 					<Pagination limit={this.state.limit} offset={this.state.offset} totalCount={this.state.totalCount} onPageChange={this._onPageChange} />

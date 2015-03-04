@@ -1,5 +1,6 @@
 var service = require('../../core/courses');
 var commentsService = require('../../core/comments');
+var coursesRatingsService = require('../../core/courses-ratings');
 var _ = require('lodash');
 var Promise = require('bluebird');
 
@@ -37,8 +38,34 @@ function queryComments (req, res) {
 	});
 }
 
+function listRatings (req, res) {
+	service.listRatings({id: req.params.id}).then(function gotCourseRatings (ratings) {
+		res.json({
+			data: ratings,
+			totalCount: ratings.length
+		});
+	});
+}
+
+function updateRating (req, res) {
+	var data = {
+		course_id: req.params.id,
+		rating_id: req.body.id,
+		value: req.body.value,
+		//TODO: USER ID IS SO WRONG
+		user_id: 1
+	};
+	coursesRatingsService.createOrUpdate(data).then(function onCourseRatingUpdated (id) {
+		//todo: what to return?
+		res.json({id: id});
+	});
+
+}
+
 module.exports = {
 	query: query,
 	view: view,
-	queryComments: queryComments
+	queryComments: queryComments,
+	listRatings: listRatings,
+	updateRating: updateRating
 };
