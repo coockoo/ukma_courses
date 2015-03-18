@@ -6,15 +6,9 @@ function query (params) {
 	db.paginate(builder, params);
 	return builder;
 }
-function count (params) {
-	var where = params || {};
-	return db('ratings').where(where).count().first().then(function (data) {
-		return data.count;
-	});
-}
+var count = db.count('ratings');
 function create (params, t) {
 	var builder = db('ratings');
-	console.log('inserting params');
 	builder.insert(params, 'id');
 	if (t) {
 		builder.transacting(t);

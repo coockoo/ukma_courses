@@ -8,6 +8,7 @@ $.ajaxSetup({
 	dataType: 'json',
 	contentType: 'application/json; charset=UTF-8'
 });
+global.jQuery = $;
 
 
 

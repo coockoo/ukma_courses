@@ -12,3 +12,8 @@ recreate-db: drop-db create-db
 import:
 	cd postgres && psql ukma_courses root < import.sql
 
+views:
+	cd postgres && psql ukma_courses root < views.sql
+
+connect:
+	psql ukma_courses ukma_courses

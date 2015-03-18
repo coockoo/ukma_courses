@@ -6,12 +6,7 @@ function query (params) {
 	return builder;
 }
 
-function count (params) {
-	var where = params || {};
-	return db('courses').where(where).count().first().then(function (data) {
-		return data.count;
-	});
-}
+var count = db.count('courses');
 
 function findAll () {
 	return db('courses');
@@ -28,12 +23,9 @@ function queryComments (params) {
 }
 
 function listRatings (params) {
-	var builder = db('ratings');
-	builder.select('ratings.name', 'ratings.id', 'courses_ratings.course_id', 'courses_ratings.value');
-	builder.leftJoin('courses_ratings', function () {
-		this.on('courses_ratings.rating_id', '=', 'ratings.id');
-	});
-	builder.where('courses_ratings.course_id', params.id).orWhereNull('courses_ratings.course_id');
+	var builder = db('v_course_ratings');
+	builder.where('course_id', params.id);
+	builder.orderBy('id');
 	return builder;
 }
 

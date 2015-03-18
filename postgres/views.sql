@@ -1,0 +1,1 @@
+\i ./views/courses/ratings.sql

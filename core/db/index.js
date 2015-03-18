@@ -20,5 +20,13 @@ db.paginate = function (builder, params) {
 	}
 	return builder;
 };
+db.count = function (tablename) {
+	return function count (params) {
+		var where = params || {};
+		return db(tablename).where(where).count().first().then(function (data) {
+			return data.count;
+		});
+	}
+};
 
 module.exports = db;

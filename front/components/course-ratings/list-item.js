@@ -1,9 +1,15 @@
 var React = require('react');
+var $ = require('jquery');
+global.jQuery = $;
+require('../../bower/bootstrap-star-rating/js/star-rating');
 
 var CourseRatingListItem = React.createClass({
-	_onChange: function (e) {
+	_onChange: function (e, value) {
 		e.preventDefault();
-		var changed = {id: this.props.rating.id, value: e.target.value};
+		if (value == '') {
+			value = null;
+		}
+		var changed = {id: this.props.rating.id, value: value};
 		this.props.onChange(changed);
 	},
 	getInitialState: function () {
@@ -11,12 +17,32 @@ var CourseRatingListItem = React.createClass({
 			value: 0
 		}
 	},
+	componentDidMount: function () {
+		var input = $(this.getDOMNode()).find('input');
+		input.rating({
+			stars: 10,
+			min: 0,
+			max: 10,
+			step: 1,
+			size: 'xs',
+			showCaption: false,
+			clearValue: ''
+		});
+		input.on('rating.change', this._onChange);
+		input.on('rating.clear', this._onChange);
+	},
 	render: function () {
 		return (
 			<div className="form-group">
 				<label htmlFor={'course-rating' + this.props.rating.id} className="col-xs-3">{this.props.rating.name}</label>
 				<div className="col-xs-6">
-					<input type="text" id={'course-rating' + this.props.rating.id} name={'course-rating' + this.props.rating.id} value={this.props.rating.value} className="form-control" onChange={this._onChange}/>
+					<input
+						type="number"
+						id={'course-rating' + this.props.rating.id}
+						name={'course-rating' + this.props.rating.id}
+						value={this.props.rating.value}
+						className="rating"
+						onChange={this._onChange} />
 				</div>
 			</div>
 		);

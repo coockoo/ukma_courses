@@ -13,6 +13,8 @@ function createOrUpdate (params) {
 	}).then(_.first);
 }
 
+var count = db.count('courses_ratings');
+
 module.exports = {
 	createOrUpdate: createOrUpdate
 };
