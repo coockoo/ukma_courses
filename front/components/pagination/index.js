@@ -39,8 +39,9 @@ var Pagination = React.createClass({
 				<PaginationItem key={page} page={page} current={current} onClick={context._onPageClick}/>
 			);
 		});
+		var hiddenClass = total == 0 ? 'hidden' : '';
 		return (
-			<nav>
+			<nav className={hiddenClass}>
 				<ul className="pagination">
 					<li className={count == 0 || current == 0?'disabled':''}><a href="javascript:void(0);" onClick={this._onPrevClicked}><span>&laquo;</span></a></li>
 					{pages}
