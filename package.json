@@ -32,6 +32,7 @@
     "node": "*"
   },
   "scripts": {
+    "start": "node api/app.js",
     "build": "browserify front/app.js -o front/build.js --no-bundle-external --list",
     "build-react": "browserify react -o front/react.js --list"
   },
