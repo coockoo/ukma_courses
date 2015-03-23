@@ -1,6 +1,8 @@
 var React = require('react');
 var CoursesList = require('../../components/courses/list');
 var Course = require('../../resources/course');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Pagination = require('../../components/pagination');
 
@@ -35,6 +37,10 @@ var CoursesListPage = React.createClass({
 		return (
 			<div className="row">
 				<div className="col-md-8 col-md-offset-2">
+
+					<div>
+						<Link to="new-course">Create new course</Link>
+					</div>
 
 					<div className="text-center">
 						<Pagination limit={this.state.limit} offset={this.state.offset} totalCount={this.state.totalCount} onPageChange={this._onPageChange} />

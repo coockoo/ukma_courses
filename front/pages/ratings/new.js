@@ -5,7 +5,7 @@ var RatingForm = require('../../components/ratings/form');
 
 var Rating = require('../../resources/rating');
 
-var RatingsNewPage = React.createClass({
+var NewRatingPage = React.createClass({
 	mixins: [Router.Navigation],
 	_createRating: function (rating) {
 		var context = this;
@@ -23,4 +23,4 @@ var RatingsNewPage = React.createClass({
 	}
 });
 
-module.exports = RatingsNewPage;
+module.exports = NewRatingPage;

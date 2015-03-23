@@ -31,6 +31,10 @@ function listRatings (params) {
 	return builder;
 }
 
+function create (course) {
+	return db('courses').insert(course, 'id');
+}
+
 
 module.exports = {
 	query: query,
@@ -38,5 +42,6 @@ module.exports = {
 	queryComments: queryComments,
 	findAll: findAll,
 	findById: findById,
-	listRatings: listRatings
+	listRatings: listRatings,
+	create: create
 };

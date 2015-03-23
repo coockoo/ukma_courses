@@ -42,10 +42,20 @@ function updateRating (id, params) {
 	});
 }
 
+function create (course) {
+	var data = _.pick(course, ['name', 'description']);
+	return $.ajax({
+		url: '/api/courses',
+		method: 'POST',
+		data: JSON.stringify(data)
+	});
+}
+
 module.exports = {
 	query: query,
 	getById: getById,
 	queryComments: queryComments,
 	listRatings: listRatings,
-	updateRating: updateRating
+	updateRating: updateRating,
+	create: create
 };

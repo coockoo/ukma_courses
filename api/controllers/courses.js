@@ -59,7 +59,13 @@ function updateRating (req, res) {
 		//todo: what to return?
 		res.json({id: id});
 	});
+}
 
+function create (req, res) {
+	var data = _.pick(req.body, ['name', 'description']);
+	service.create(data).then(function (ids) {
+		res.json({ids: ids});
+	});
 }
 
 module.exports = {
@@ -67,5 +73,6 @@ module.exports = {
 	view: view,
 	queryComments: queryComments,
 	listRatings: listRatings,
-	updateRating: updateRating
+	updateRating: updateRating,
+	create: create
 };
