@@ -51,11 +51,21 @@ function create (course) {
 	});
 }
 
+function update (id, course) {
+	var data = _.pick(course, ['name', 'description']);
+	return $.ajax({
+		url: ['/api/courses/', id].join(''),
+		method: 'PUT',
+		data: JSON.stringify(data)
+	});
+}
+
 module.exports = {
 	query: query,
 	getById: getById,
 	queryComments: queryComments,
 	listRatings: listRatings,
 	updateRating: updateRating,
-	create: create
+	create: create,
+	update: update
 };

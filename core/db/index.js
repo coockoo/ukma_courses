@@ -8,7 +8,8 @@ var db = knex({
 		user: 'ukma_courses',
 		password: 'ukma_courses',
 		database: 'ukma_courses'
-	}
+	},
+	debug: true
 });
 
 db.paginate = function (builder, params) {

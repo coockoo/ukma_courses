@@ -11,6 +11,7 @@ var coursesController = require('./controllers/courses');
 router.get('/courses', coursesController.query);
 router.get('/courses/:id', coursesController.view);
 router.post('/courses', coursesController.create);
+router.put('/courses/:id', coursesController.update);
 router.get('/courses/:id/comments', coursesController.queryComments);
 router.get('/courses/:id/ratings', coursesController.listRatings);
 router.put('/courses/:id/ratings', coursesController.updateRating);

@@ -68,11 +68,20 @@ function create (req, res) {
 	});
 }
 
+function update (req, res) {
+	var data = _.pick(req.body, ['name', 'description']);
+	var id = req.params.id;
+	service.update(id, data).then(_.first).then(function (id) {
+		res.json({id: id});
+	});
+}
+
 module.exports = {
 	query: query,
 	view: view,
 	queryComments: queryComments,
 	listRatings: listRatings,
 	updateRating: updateRating,
-	create: create
+	create: create,
+	update: update
 };

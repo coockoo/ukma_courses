@@ -35,6 +35,10 @@ function create (course) {
 	return db('courses').insert(course, 'id');
 }
 
+function update (id, data) {
+	return db('courses').update(data, 'id').where({id: id});
+}
+
 
 module.exports = {
 	query: query,
@@ -43,5 +47,6 @@ module.exports = {
 	findAll: findAll,
 	findById: findById,
 	listRatings: listRatings,
-	create: create
+	create: create,
+	update: update
 };
