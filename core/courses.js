@@ -3,6 +3,7 @@ var db = require('./db');
 function query (params) {
 	var builder = db('courses');
 	db.paginate(builder, params);
+	builder.orderBy('id');
 	return builder;
 }
 
