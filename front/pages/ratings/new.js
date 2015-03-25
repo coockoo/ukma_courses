@@ -16,8 +16,10 @@ var NewRatingPage = React.createClass({
 	render: function () {
 		//TODO: maybe do this with popup (only name)
 		return (
-			<div className="col-xs-8 col-xs-offset-2">
-				<RatingForm onSubmit={this._createRating}/>
+			<div className="row">
+				<div className="col-xs-8 col-xs-offset-2">
+					<RatingForm onSubmit={this._createRating}/>
+				</div>
 			</div>
 		);
 	}
