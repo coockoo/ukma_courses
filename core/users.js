@@ -1,25 +1,12 @@
 var Promise = require('bluebird');
+var db = require('./db');
 
 function findById (id) {
-	return Promise.resolve({
-		id: id,
-		name: 'Chief',
-		email: 'superuser@mail.com',
-		surname: 'Engineer',
-		username: 'superuser',
-		password: 'password'
-	});
+	return db('users').where('id', id).first();
 }
 
 function findByEmail (email) {
-	return Promise.resolve({
-		id: 1,
-		name: 'Chief',
-		email: email,
-		surname: 'Engineer',
-		username: 'superuser',
-		password: 'password'
-	});
+	return db('users').where('email', email).first();
 }
 
 module.exports = {

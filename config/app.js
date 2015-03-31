@@ -1,4 +1,3 @@
 module.exports = {
-	port: 5000,
-	token: 'secret-secret'
+	port: 5000
 };
