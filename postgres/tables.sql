@@ -3,3 +3,4 @@
 \i ./tables/ratings.sql
 \i ./tables/comments.sql
 \i ./tables/courses_ratings.sql
+\i ./tables/authorizations.sql
