@@ -13,7 +13,7 @@ var TopBar = React.createClass({
 					<div className="navbar-collapse">
 						<ul className="nav navbar-nav">
 							<li><Link to="app">Root</Link></li>
-							<li><Link to="authentication">Auth</Link></li>
+							<li><Link to="new-authorization">Auth</Link></li>
 							<li><Link to="courses">All courses</Link></li>
 							<li><Link to="ratings">All ratings</Link></li>
 						</ul>

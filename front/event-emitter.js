@@ -1,4 +1,6 @@
-var events = {};
+var _ = require('lodash');
+
+var events = [];
 
 module.exports = {
 	on: function (eventName, handler) {
@@ -9,9 +11,9 @@ module.exports = {
 	},
 	emit: function (eventName, params) {
 		if (events[eventName]) {
-			events[eventName].each(function (event) {
+			_.forEach(events[eventName], function (event) {
 				event(params);
-			})
+			});
 		}
 	}
 };

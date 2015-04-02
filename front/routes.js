@@ -5,7 +5,7 @@ var DefaultRoute = Router.DefaultRoute;
 
 var AppViewPage = require('./pages/app');
 
-var AuthenticationViewPage = require('./pages/authentication/view');
+var AuthorizationNewPage = require('./pages/authorizations/new');
 var RegistrationViewPage = require('./pages/registration/view');
 var DashboardViewPage = require('./pages/dashboard/view');
 
@@ -19,7 +19,7 @@ var NewRatingPage = require('./pages/ratings/new');
 
 module.exports = (
 	<Route name="app" path="/" handler={AppViewPage}>
-		<Route name="authentication" handler={AuthenticationViewPage} />
+		<Route name="new-authorization" handler={AuthorizationNewPage} path="authorizations/new" />
 		<Route name="registration" handler={RegistrationViewPage} />
 
 		<Route name="courses" handler={CoursesListPage} path="courses" />
