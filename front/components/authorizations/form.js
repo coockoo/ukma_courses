@@ -26,7 +26,7 @@ var AuthorizationForm = React.createClass({
 				</div>
 				<div className="form-group text-right">
 					<input type="submit" value="Sign in" className='btn btn-primary'/>
-					<span> or <Link to="new-authorization">create account</Link></span>
+					<span> or <Link to="new-user">create account</Link></span>
 				</div>
 			</form>
 		);
