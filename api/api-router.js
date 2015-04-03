@@ -4,6 +4,9 @@ var router = express.Router();
 var usersController = require('./controllers/users');
 router.post('/users', usersController.create);
 
+var currentUserController = require('./controllers/current-user');
+router.get('/user', currentUserController.view);
+
 var coursesController = require('./controllers/courses');
 
 router.get('/courses', coursesController.query);

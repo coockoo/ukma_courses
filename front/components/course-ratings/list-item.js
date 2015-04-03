@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var $ = require('jquery');
 global.jQuery = $;
 require('../../bower/bootstrap-star-rating/js/star-rating');

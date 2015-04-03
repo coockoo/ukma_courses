@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var State = React.State;
 var _ = require('lodash');
 

@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var Router = require('react-router');
 var Link = Router.Link;
 
@@ -13,7 +13,6 @@ var AuthorizationForm = React.createClass({
 		this.props.onChange(update);
 	},
 	render: function () {
-		//TODO: replace new-authorization with new-user?
 		return (
 			<form onSubmit={this._onSubmit}>
 				<div className='form-group'>

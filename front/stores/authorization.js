@@ -8,7 +8,8 @@ var _ = require('lodash');
 var EventEmitter = require('../event-emitter');
 
 var events = {
-	'TOKEN_CHANGE': 'authorization:token:change'
+	'TOKEN_CHANGE': 'authorization:token:change',
+	'USER_CHANGE': 'authorization:user:change'
 };
 
 /** Add listener to token change event */
@@ -36,13 +37,42 @@ function create (credentials) {
 	}).done(function done (data) {
 		if (data && data.token) {
 			setToken(data.token);
+			fetchCurrentUser();
 			context.emit(events.TOKEN_CHANGE);
 		}
 	});
 }
 
+function fetchCurrentUser () {
+	return $.ajax({
+		method: 'GET',
+		url: '/api/user'
+	}).done(function done (user) {
+		if (user) {
+			setUser(user);
+			context.emit(events.USER_CHANGE);
+		}
+	})
+}
+
+/** Returns the current user (authorized) by token in the localstorage */
+function getCurrentUser () {
+	return store.get('user');
+}
+
+/** Saves user into localstorage.user */
+function setUser (user) {
+	return store.set('user', user);
+}
+
+function isAuthorized () {
+	return !!getToken() && !!getCurrentUser();
+}
+
 module.exports = _.extend({}, EventEmitter, {
 	onTokenChanged: onTokenChanged,
 	getToken: getToken,
-	create: create
+	create: create,
+	getCurrentUser: getCurrentUser,
+	isAuthorized: isAuthorized
 });

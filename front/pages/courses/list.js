@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var CoursesList = require('../../components/courses/list');
 var Course = require('../../resources/course');
 var Router = require('react-router');

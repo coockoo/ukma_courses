@@ -1,10 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var jwtExpress = require('express-jwt');
-var config = require('../config/app');
+var expressJwt = require('express-jwt');
+var appConfig = require('../config/app');
+var authorizationConfig = require('../config/authorization');
 
 var apiRouter = require('./api-router');
 var authorizationRouter = require('./authorization-router');
+var unauthorizedHandler = require('./middleware/unauthorized-handler');
 
 var app = express();
 //TODO: replace this with nginx server and config or different location at all
@@ -18,9 +20,12 @@ app.use(function (req, res, next) {
 	next();
 });
 
+app.use('/api', expressJwt({secret: authorizationConfig.secret, userProperty: 'email'}));
 app.use('/api', apiRouter);
 app.use('/authorizations', authorizationRouter);
+app.use('/api', unauthorizedHandler);
 
-app.listen(config.port);
 
-console.log('Server started on port', config.port);
+app.listen(appConfig.port);
+
+console.log('Server started on port', appConfig.port);
