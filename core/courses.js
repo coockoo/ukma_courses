@@ -26,8 +26,7 @@ function queryComments (params) {
 function listRatings (params) {
 	var builder = db('v_course_ratings');
 	builder.where('course_id', params.id);
-	//TODO: replace this with user_id
-	builder.where('user_id', 1);
+	builder.where('user_id', params.user_id);
 	builder.orderBy('id');
 	return builder;
 }

@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use('/api', expressJwt({secret: authorizationConfig.secret, userProperty: 'email'}));
+app.use('/api', expressJwt({secret: authorizationConfig.secret}));
 app.use('/api', apiRouter);
 app.use('/authorizations', authorizationRouter);
 app.use('/api', unauthorizedHandler);

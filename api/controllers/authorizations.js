@@ -28,9 +28,10 @@ function create (req, res, next) {
 			return;
 		}
 		if (!bcrypt.compareSync(credentials.password, user.password)) {
-			res.status(400).json({status: 400, message: 'Wrong password'})
+			res.status(400).json({status: 400, message: 'Wrong password'});
+			return;
 		}
-		var token = jwt.sign(user.email, config.secret);
+		var token = jwt.sign(_.pick(user, ['id', 'email']), config.secret);
 		console.log('token for email %s is %s', user.email, token);
 		var authorizationRecord = {user_id: user.id, token: token};
 		return authorizations.find(authorizationRecord).then(function gotAuthorization (userAuthorization) {

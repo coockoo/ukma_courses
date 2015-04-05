@@ -39,7 +39,7 @@ function queryComments (req, res) {
 }
 
 function listRatings (req, res) {
-	service.listRatings({id: req.params.id}).then(function gotCourseRatings (ratings) {
+	service.listRatings({id: req.params.id, user_id: req.user.id}).then(function gotCourseRatings (ratings) {
 		res.json({
 			data: ratings,
 			totalCount: ratings.length
@@ -52,8 +52,7 @@ function updateRating (req, res) {
 		course_id: req.params.id,
 		rating_id: req.body.id,
 		value: req.body.value,
-		//TODO: USER ID IS SO WRONG
-		user_id: 1
+		user_id: req.user.id
 	};
 	coursesRatingsService.createOrUpdate(data).then(function onCourseRatingUpdated (id) {
 		//todo: what to return?
