@@ -5,7 +5,9 @@ var AuthorizationForm = require('../../components/authorizations/form');
 var authorizations = require('../../stores/authorization');
 
 var AuthorizationNewPage = React.createClass({
-	mixins: [Router.Navigation],
+	contextTypes: {
+		router: React.PropTypes.func
+	},
 	_onSubmit: function () {
 		authorizations.create(this.state.credentials).then(this._onAuthorizationSuccess);
 	},
@@ -16,7 +18,7 @@ var AuthorizationNewPage = React.createClass({
 		this.setState(newState);
 	},
 	_onAuthorizationSuccess: function () {
-		this.transitionTo('app');
+		this.context.router.transitionTo('app');
 	},
 	getInitialState: function () {
 		return {
@@ -24,6 +26,11 @@ var AuthorizationNewPage = React.createClass({
 				email: '',
 				password: ''
 			}
+		}
+	},
+	componentDidMount: function () {
+		if (authorizations.isAuthorized()) {
+			this.context.router.replaceWith('app');
 		}
 	},
 	render: function () {
@@ -38,5 +45,6 @@ var AuthorizationNewPage = React.createClass({
 		);
 	}
 });
+
 
 module.exports = AuthorizationNewPage;

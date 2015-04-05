@@ -14,7 +14,9 @@ var CourseRatingsList = require('../../components/course-ratings/list');
 
 
 var CourseViewPage = React.createClass({
-	mixins: [Router.State],
+	contextTypes: {
+		router: React.PropTypes.func
+	},
 	getInitialState: function () {
 		return {
 			course: {},
@@ -29,21 +31,21 @@ var CourseViewPage = React.createClass({
 	},
 	_queryComments: function () {
 		var context = this;
-		var id = context.getParams().id;
+		var id = context.context.router.getCurrentParams().id;
 		Course.queryComments({id: id, limit: this.state.limit, offset: this.state.offset}).then(function (response) {
 			context.setState({comments: response.data, totalCount: response.totalCount});
 		});
 	},
 	_queryRatings: function () {
 		var context = this;
-		var id = context.getParams().id;
+		var id = context.context.router.getCurrentParams().id;
 		Course.listRatings({id: id}).then(function (response) {
 			context.setState({ratings: response.data})
 		})
 	},
 	componentDidMount: function () {
 		var context = this;
-		var id = this.getParams().id;
+		var id = this.context.router.getCurrentParams().id;
 		Course.getById(id).then(function (course) {
 			context.setState({course: course});
 		});
@@ -52,7 +54,7 @@ var CourseViewPage = React.createClass({
 	},
 	_addComment: function (comment) {
 		var context = this;
-		comment.course_id = this.getParams().id;
+		comment.course_id = this.context.router.getCurrentParams().id;
 		Comment.create(comment).then(function () {
 			context._queryComments();
 		});

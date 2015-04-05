@@ -4,19 +4,21 @@ var Router = require('react-router');
 
 var Course = require('../../resources/course');
 var CourseEditPage = React.createClass({
-	mixins: [Router.Navigation, Router.State],
+	contextTypes: {
+		router: React.PropTypes.func.isRequired
+	},
 	_getCourse: function () {
 		var context = this;
-		var id = this.getParams().id;
+		var id = this.context.router.getCurrentParams().id;
 		Course.getById(id).then(function (course) {
 			context.setState({course: course});
 		});
 	},
 	_onSubmit: function () {
 		var context = this;
-		var id = this.getParams().id;
+		var id = this.context.router.getCurrentParams().id;
 		Course.update(id, this.state.course).then(function () {
-			context.transitionTo('courses');
+			context.context.router.transitionTo('courses');
 		});
 	},
 	_onChange: function (update) {

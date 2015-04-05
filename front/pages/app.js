@@ -11,7 +11,9 @@ var AppViewPage = React.createClass({
 			<div>
 				<TopBar />
 
-				<RouteHandler />
+				<div className="container-fluid">
+					<RouteHandler />
+				</div>
 			</div>
 		);
 	}

@@ -1,11 +1,12 @@
 var React = require('react/addons');
-var State = React.State;
 var _ = require('lodash');
 
 var PaginationItem = require('./item');
 
 var Pagination = React.createClass({
-	mixins: [State],
+	contextTypes: {
+		router: React.PropTypes.func
+	},
 	getInitialState: function () {
 		return {
 			pages: []
