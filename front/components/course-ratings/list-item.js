@@ -12,11 +12,6 @@ var CourseRatingListItem = React.createClass({
 		var changed = {id: this.props.rating.id, value: value};
 		this.props.onChange(changed);
 	},
-	getInitialState: function () {
-		return {
-			value: 0
-		}
-	},
 	componentDidMount: function () {
 		var input = $(this.getDOMNode()).find('input');
 		input.rating({
@@ -43,6 +38,9 @@ var CourseRatingListItem = React.createClass({
 						value={this.props.rating.value}
 						className="rating"
 						onChange={this._onChange} />
+				</div>
+				<div className="col-xs-1">
+					<span>Total: {this.props.rating.total}</span>
 				</div>
 			</div>
 		);

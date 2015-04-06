@@ -39,7 +39,7 @@ function queryComments (req, res) {
 }
 
 function listRatings (req, res) {
-	service.listRatings({id: req.params.id, user_id: req.user.id}).then(function gotCourseRatings (ratings) {
+	coursesRatingsService.listRatings({course_id: req.params.id, totals: true, user_id: req.user.id}).then(function gotUserCourseRatings (ratings) {
 		res.json({
 			data: ratings,
 			totalCount: ratings.length

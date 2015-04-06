@@ -73,10 +73,10 @@ var CourseViewPage = React.createClass({
 		});
 		ratingToChange.value = rating.value;
 		this.setState({ratings: this.state.ratings}, function onStateUpdated () {
-			Course.updateRating(context.state.course.id, ratingToChange);//.then(function onRatingUpdated () {
-			//todo: maybe replace this with returning rating value on update and updating only one rating
-			//context._queryRatings();
-		//});
+			Course.updateRating(context.state.course.id, ratingToChange).then(function onRatingUpdated () {
+				//todo: maybe replace this with returning rating value on update and updating only one rating
+				context._queryRatings();
+			});
 		});
 	},
 	render: function () {
@@ -86,7 +86,7 @@ var CourseViewPage = React.createClass({
 				<p>{this.state.course.description}</p>
 
 				<div className="row">
-					<div className="col-xs-4">
+					<div className="col-xs-12">
 						<CourseRatingsList ratings={this.state.ratings} onChange={this._onRatingChange} />
 					</div>
 				</div>
