@@ -6,5 +6,9 @@ insert into courses (name, description) values
 ('Super Course 1', 'This is description to course 1'),
 ('English', 'This is description to english');
 
+insert into professors (name, surname, degree) values
+('Professor', 'Van Der Sar', 'sen. professor'),
+('Helen', 'Malkovich', 'lecturer');
+
 insert into comments (course_id, title, content, created_at) values
 (1, 'This is my first comment', 'This is the test content of the comments', now());
