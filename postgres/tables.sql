@@ -4,3 +4,4 @@
 \i ./tables/comments.sql
 \i ./tables/courses_ratings.sql
 \i ./tables/authorizations.sql
+\i ./tables/professors.sql
