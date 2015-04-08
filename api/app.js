@@ -4,21 +4,19 @@ var expressJwt = require('express-jwt');
 var appConfig = require('../config/app');
 var authorizationConfig = require('../config/authorization');
 
+// -- routers
 var apiRouter = require('./api-router');
 var authorizationRouter = require('./authorization-router');
+
+// -- middlewares
 var unauthorizedHandler = require('./middleware/unauthorized-handler');
+var cors = require('./middleware/cors');
 
 var app = express();
 //TODO: replace this with nginx server and config or different location at all
 app.use(express.static(__dirname + '/../front'));
 app.use(bodyParser.json());
-//CORS:
-app.use(function (req, res, next) {
-	res.append('Access-Control-Allow-Origin', '*');
-	res.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-	res.append('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
-	next();
-});
+app.use(cors);
 
 app.use('/api', expressJwt({secret: authorizationConfig.secret}));
 app.use('/api', apiRouter);
